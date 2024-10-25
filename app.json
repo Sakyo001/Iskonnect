@@ -4,11 +4,11 @@
     "slug": "Iskonnect",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/puplogo.jpg",
+    "icon": "./assets/images/puplogo.png",
     "scheme": "Iskonnect",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/puplogo.jpg",
+      "image": "./assets/images/puplogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,20 +18,34 @@
     "android": {
       "adaptiveIcon": {
         "package": "com.Iskonnect.Iskonnect",
-        "foregroundImage": "./assets/images/puplogo.jpg",
+        "foregroundImage": "./assets/images/puplogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.Iskonnect.Iskonnect"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/puplogo.jpg"
+      "favicon": "./assets/images/puplogo.png"
     },
     "plugins": [
       "expo-router"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "48f022d5-5768-4d43-a7a6-1542b92d4978"
+      },
+      "firebase": {
+        "apiKey": "YOUR_API_KEY",
+        "authDomain": "YOUR_AUTH_DOMAIN",
+        "projectId": "YOUR_PROJECT_ID",
+        "storageBucket": "YOUR_STORAGE_BUCKET",
+        "messagingSenderId": "YOUR_MESSAGING_SENDER_ID",
+        "appId": "YOUR_APP_ID"
+      }
     }
   }
 }

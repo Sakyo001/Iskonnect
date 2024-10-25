@@ -13,6 +13,9 @@ import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import settings from "../assets/icons/settings.png";
 import categories from "../assets/icons/categories.png";
+import email from "../assets/icons/email.png";
+import user from "../assets/icons/user.png";
+import lock from "../assets/icons/lock.png"
 
 
 
@@ -32,4 +35,7 @@ export default {
   eye,
   settings,
   categories,
+  email,
+  lock,
+  user,
 };

@@ -14,7 +14,10 @@ const TabIcon = ({ icon, color, name, focused }) => {
       />
       <Text
         className={`${focused ? 'font-semibold' : 'font-regular'} text-xs`}
-        style={{ color }}
+        style={{
+          color,
+          marginBottom: focused ? 5 : 0, // Add bottom margin when focused
+        }}
       >
         {name}
       </Text>
