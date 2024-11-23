@@ -25,5 +25,6 @@ import lagoon14 from "../assets/images/lagoon14.jpg"
 import lagoon15 from "../assets/images/lagoon15.jpg"
 import lagoon16 from "../assets/images/lagoon16.jpg"
 import lagoonVideo from "../assets/images/lagoon.mp4"
+import adaptive from "../assets/images/adaptive.png"
 
-export default { profile, thumbnail, cards, path, logo, logoSmall, empty, puplogo, pencil, jay, lagoon1, lagoon2, lagoon3, lagoon4, lagoon5, lagoon6, lagoon7, lagoon8, lagoon9, lagoon10, lagoon11, lagoon12, lagoon13, lagoon14, lagoon15, lagoon16, lagoonVideo };
+export default { profile, thumbnail, cards, path, logo, logoSmall, empty, puplogo, pencil, jay, lagoon1, lagoon2, lagoon3, lagoon4, lagoon5, lagoon6, lagoon7, lagoon8, lagoon9, lagoon10, lagoon11, lagoon12, lagoon13, lagoon14, lagoon15, lagoon16, lagoonVideo, adaptive };

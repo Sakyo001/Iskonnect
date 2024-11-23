@@ -1,83 +1,45 @@
 {
   "expo": {
     "name": "Iskonnect",
-    "slug": "Iskonnect",
+    "slug": "iskonnect",
+    "scheme": "iskonnect",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/puplogo.png",
-    "scheme": "Iskonnect",
-    "userInterfaceStyle": "automatic",
+    "icon": "./assets/images/adaptive.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/puplogo.png",
+      "image": "./assets/images/adaptive.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.Iskonnect.Iskonnect",
-      "infoPlist": {
-        "NSCameraUsageDescription": "Allow Iskonnect to access your camera to view AR content.",
-        "NSPhotoLibraryUsageDescription": "Allow Iskonnect to access your photos for AR content."
-      }
+      "bundleIdentifier": "com.sakyo11.iskonnect"
     },
     "android": {
+      "package": "com.sakyo11.iskonnect",
       "adaptiveIcon": {
-        "package": "com.Iskonnect.Iskonnect",
-        "foregroundImage": "./assets/images/puplogo.png",
+        "foregroundImage": "./assets/images/adaptive.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.Iskonnect.Iskonnect",
       "permissions": [
         "CAMERA",
-        "WRITE_EXTERNAL_STORAGE",
         "READ_EXTERNAL_STORAGE",
-        "INTERNET"
-      ],
-      "ndkVersion": "25.1.8937393",
-      "intentFilters": [
-        {
-          "action": "android.intent.action.VIEW",
-          "category": ["android.intent.category.DEFAULT", "android.intent.category.BROWSABLE"],
-          "data": {
-            "scheme": "https",
-            "host": "arvr.google.com",
-            "pathPrefix": "/scene-viewer"
-          }
-        }
+        "WRITE_EXTERNAL_STORAGE"
       ]
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/puplogo.png",
-      "config": {
-        "webGLEnabled": true
-      }
     },
     "plugins": [
-      "expo-router",
-      "expo-asset",
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow Iskonnect to access your camera to view AR content."
-        }
-      ]
+      "expo-router"
     ],
-    "experiments": {
-      "typedRoutes": true
-    },
     "extra": {
-      "eas": {
-        "projectId": "48f022d5-5768-4d43-a7a6-1542b92d4978"
+      "router": {
+        "origin": false
       },
-      "firebase": {
-        "apiKey": "AIzaSyDtbRwucyIySHdI8eGdGo2jxA6D0rbtX1U",
-        "authDomain": "iskonnect-aef77.firebaseapp.com",
-        "projectId": "iskonnect-aef77",
-        "storageBucket": "iskonnect-aef77.appspot.com",
-        "messagingSenderId": "550394304360",
-        "appId": "1:550394304360:android:31d24e50aa60b13b5228dd"
+      "eas": {
+        "projectId": "d568077b-a21d-4004-82d4-0faadf53aebb"
       }
     }
   }
