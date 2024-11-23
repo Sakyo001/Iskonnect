@@ -30,20 +30,21 @@ const Profile = () => {
     if (user) {
       const userRef = ref(database, `users/${user.uid}`);
 
-      // Fetch user data
       const unsubscribe = onValue(userRef, async (snapshot) => {
         const data = snapshot.val();
         if (data) {
           let profileImageUrl = images.jay; // Default image
 
-          // Check if there is a profile picture path in the user data
+          // Check if there is a profile picture path and handle errors gracefully
           if (data.profilePicture) {
             try {
               const imageRef = storageRef(storage, data.profilePicture);
               const downloadURL = await getDownloadURL(imageRef);
               profileImageUrl = { uri: downloadURL };
             } catch (error) {
-              console.error("Error fetching profile picture: ", error);
+              console.log("Using default profile picture");
+              // Don't show error to user, just use default image
+              profileImageUrl = images.jay;
             }
           }
 
@@ -54,27 +55,32 @@ const Profile = () => {
             createdOn: data.createdOn || new Date().toLocaleDateString(),
           });
         } else {
-          // If no data exists, create initial user data
+          // Create initial user data with default values
           const initialUserData = {
             email: user.email,
             campus: 'PUP Main Campus',
             createdOn: new Date().toLocaleDateString(),
-            profilePicture: null
+            // Don't set profilePicture initially
           };
           
-          await set(ref(database, `users/${user.uid}`), initialUserData);
-          setUserInfo({
-            profilePicture: images.jay,
-            email: user.email || '',
-            campus: initialUserData.campus,
-            createdOn: initialUserData.createdOn,
-          });
+          try {
+            await set(ref(database, `users/${user.uid}`), initialUserData);
+            setUserInfo({
+              profilePicture: images.jay,
+              email: user.email || '',
+              campus: initialUserData.campus,
+              createdOn: initialUserData.createdOn,
+            });
+          } catch (error) {
+            console.error("Error setting initial user data:", error);
+            Alert.alert("Error", "Failed to set up user profile.");
+          }
         }
         setLoading(false);
       }, (error) => {
         console.error("Error fetching user data:", error);
-        Alert.alert("Error fetching user data: " + error.message);
         setLoading(false);
+        Alert.alert("Error", "Failed to load profile data.");
       });
 
       return () => unsubscribe();
@@ -82,6 +88,16 @@ const Profile = () => {
       setLoading(false);
     }
   }, [auth, database, storage]);
+
+  // Add this function to handle profile picture upload errors
+  const handleImageUploadError = (error) => {
+    console.error("Image upload error:", error);
+    Alert.alert(
+      "Upload Failed",
+      "Failed to upload profile picture. Please try again later.",
+      [{ text: "OK" }]
+    );
+  };
 
   const handleEditProfile = () => {
     navigation.navigate('EditProfile'); // Navigate to EditProfile screen
@@ -101,9 +117,9 @@ const Profile = () => {
           onPress: async () => {
             try {
               await signOut(auth);
-              // Use router to navigate to sign-in
-              router.push('/(auth)/sign-in');
+              router.replace('/(auth)/sign-in');
             } catch (error) {
+              console.error("Logout error:", error);
               Alert.alert("Error", "Failed to logout. Please try again.");
             }
           }

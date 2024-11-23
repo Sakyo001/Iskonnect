@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
-import { firebase } from '@react-native-firebase/app';
-
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,13 +26,26 @@ const RootLayout = () => {
     }
   }, [fontsLoaded, error]);
 
-
   return (
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { 
+          marginTop: 40  // Add top margin
+        },
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen 
+        name="(tabs)" 
+        options={{
+          contentStyle: {
+            marginTop: 40  // Add top margin for tabs specifically
+          }
+        }}
+      />
+    </Stack>
   );
 };
 

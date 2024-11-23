@@ -33,6 +33,7 @@
         "READ_EXTERNAL_STORAGE",
         "INTERNET"
       ],
+      "ndkVersion": "25.1.8937393",
       "intentFilters": [
         {
           "action": "android.intent.action.VIEW",

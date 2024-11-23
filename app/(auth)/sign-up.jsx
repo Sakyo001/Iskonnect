@@ -6,9 +6,10 @@ import images from '../../constants/images';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 import { Link, useRouter } from 'expo-router';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'; // Update imports
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import GuestButton from '../../components/GuestButton';
 import { Ionicons } from '@expo/vector-icons';
+import { auth } from '../../firebaseConfig';
 
 
 const SignUp = () => {
@@ -67,7 +68,6 @@ const SignUp = () => {
       return;
     }
 
-    const auth = getAuth();
     setIsSubmitting(true);
 
     try {

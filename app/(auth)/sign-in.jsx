@@ -6,10 +6,10 @@ import images from '../../constants/images';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 import { Link, useNavigation, useRouter } from 'expo-router';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Update imports
 import GuestButton from '../../components/GuestButton';
 import { Ionicons } from '@expo/vector-icons';
-
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 
 // Email validation function
 const isValidEmail = (email) => {
@@ -73,7 +73,6 @@ const SignIn = () => {
       return;
     }
 
-    const auth = getAuth();
     setIsSubmitting(true);
 
     try {
