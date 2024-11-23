@@ -1,4 +1,4 @@
-import { View, Text, Image, Alert } from 'react-native';
+import { View, Text, Image, Alert, Modal, Animated } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -8,16 +8,62 @@ import CustomButton from '../../components/CustomButton';
 import { Link, useRouter } from 'expo-router';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'; // Update imports
 import GuestButton from '../../components/GuestButton';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const SignUp = () => {
   const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '', confirmPassword: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const errorFadeAnim = React.useRef(new Animated.Value(0)).current;
+
+  const showSuccess = () => {
+    setShowSuccessModal(true);
+    Animated.sequence([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.delay(1500),
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setShowSuccessModal(false);
+      router.push('/sign-in');
+    });
+  };
+
+  const showError = (message) => {
+    setErrorMessage(message);
+    setShowErrorModal(true);
+    Animated.sequence([
+      Animated.timing(errorFadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.delay(2000),
+      Animated.timing(errorFadeAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setShowErrorModal(false);
+    });
+  };
 
   const handleSignUp = async () => {
     if (form.password !== form.confirmPassword) {
-      Alert.alert('Error', "Passwords don't match.");
+      showError("Passwords don't match.");
       return;
     }
 
@@ -27,9 +73,9 @@ const SignUp = () => {
     try {
       await createUserWithEmailAndPassword(auth, form.email, form.password);
       setForm({ email: '', password: '', confirmPassword: '' });
-      Alert.alert('Success', 'Account created successfully!');
+      showSuccess();
     } catch (error) {
-      Alert.alert('Error', error.message);
+      showError(error.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -109,8 +155,109 @@ const SignUp = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      {/* Success Modal */}
+      <Modal
+        transparent
+        visible={showSuccessModal}
+        animationType="none"
+      >
+        <View style={styles.modalContainer}>
+          <Animated.View style={[styles.successModal, { opacity: fadeAnim }]}>
+            <View style={styles.iconContainer}>
+              <Ionicons name="checkmark-circle" size={50} color="#4CAF50" />
+            </View>
+            <Text style={styles.successTitle}>Welcome to Iskonnect!</Text>
+            <Text style={styles.successMessage}>Account created successfully</Text>
+          </Animated.View>
+        </View>
+      </Modal>
+
+      {/* Error Modal */}
+      <Modal
+        transparent
+        visible={showErrorModal}
+        animationType="none"
+      >
+        <View style={styles.modalContainer}>
+          <Animated.View style={[styles.errorModal, { opacity: errorFadeAnim }]}>
+            <View style={styles.iconContainer}>
+              <Ionicons name="alert-circle" size={50} color="#DC2626" />
+            </View>
+            <Text style={styles.errorTitle}>Oops!</Text>
+            <Text style={styles.errorMessage}>{errorMessage}</Text>
+          </Animated.View>
+        </View>
+      </Modal>
     </GestureHandlerRootView>
   );
+};
+
+const styles = {
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  successModal: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: '80%',
+  },
+  iconContainer: {
+    marginBottom: 15,
+  },
+  successTitle: {
+    fontSize: 22,
+    fontFamily: 'Poppins-SemiBold',
+    color: '#1a1a1a',
+    marginBottom: 5,
+  },
+  successMessage: {
+    fontSize: 16,
+    fontFamily: 'Poppins-Regular',
+    color: '#666',
+  },
+  errorModal: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: '80%',
+    borderLeftWidth: 4,
+    borderLeftColor: '#DC2626',
+  },
+  errorTitle: {
+    fontSize: 22,
+    fontFamily: 'Poppins-SemiBold',
+    color: '#DC2626',
+    marginBottom: 5,
+  },
+  errorMessage: {
+    fontSize: 16,
+    fontFamily: 'Poppins-Regular',
+    color: '#666',
+    textAlign: 'center',
+  },
 };
 
 export default SignUp;

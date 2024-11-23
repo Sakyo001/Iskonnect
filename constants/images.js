@@ -6,5 +6,24 @@ import logo from "../assets/images/logo.png";
 import logoSmall from "../assets/images/logo-small.png";
 import empty from "../assets/images/empty.png";
 import puplogo from "../assets/images/puplogo.png"
+import pencil from "../assets/images/pencil.png"
+import jay from "../assets/images/jay.jpg"
+import lagoon1 from "../assets/images/lagoon1.jpg"
+import lagoon2 from "../assets/images/lagoon2.jpg" 
+import lagoon3 from "../assets/images/lagoon3.jpg"
+import lagoon4 from "../assets/images/lagoon4.jpg"
+import lagoon5 from "../assets/images/lagoon5.jpg"
+import lagoon6 from "../assets/images/lagoon6.jpg"
+import lagoon7 from "../assets/images/lagoon7.jpg"
+import lagoon8 from "../assets/images/lagoon8.jpg"
+import lagoon9 from "../assets/images/lagoon9.jpg"
+import lagoon10 from "../assets/images/lagoon10.jpg"
+import lagoon11 from "../assets/images/lagoon11.jpg"
+import lagoon12 from "../assets/images/lagoon12.jpg"
+import lagoon13 from "../assets/images/lagoon13.jpg"
+import lagoon14 from "../assets/images/lagoon14.jpg"
+import lagoon15 from "../assets/images/lagoon15.jpg"
+import lagoon16 from "../assets/images/lagoon16.jpg"
+import lagoonVideo from "../assets/images/lagoon.mp4"
 
-export default { profile, thumbnail, cards, path, logo, logoSmall, empty, puplogo };
+export default { profile, thumbnail, cards, path, logo, logoSmall, empty, puplogo, pencil, jay, lagoon1, lagoon2, lagoon3, lagoon4, lagoon5, lagoon6, lagoon7, lagoon8, lagoon9, lagoon10, lagoon11, lagoon12, lagoon13, lagoon14, lagoon15, lagoon16, lagoonVideo };

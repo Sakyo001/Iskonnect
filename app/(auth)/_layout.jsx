@@ -3,8 +3,9 @@ import { View } from 'react-native';
 import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { initializeApp } from 'firebase/app'; // Use Firebase JS SDK
-import { getAuth } from 'firebase/auth'; // Get Auth from Firebase
+import { initializeApp, getApps } from 'firebase/app';
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -19,9 +20,14 @@ const firebaseConfig = {
 };
 
 const AuthLayout = () => {
-  // Initialize Firebase
   useEffect(() => {
-    initializeApp(firebaseConfig);
+    // Check if Firebase has already been initialized
+    if (getApps().length === 0) {
+      const app = initializeApp(firebaseConfig);
+      initializeAuth(app, {
+        persistence: getReactNativePersistence(AsyncStorage),
+      });
+    }
   }, []);
 
   return (
