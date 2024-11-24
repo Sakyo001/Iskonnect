@@ -142,11 +142,19 @@ const SignUp = () => {
               isLoading={isSubmitting}
             />
 
-            <View className="justify-center pt-5 flex-row gap-2">
+            <View className="flex-row items-center justify-center mt-8 mb-8">
               <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 16, color: '#D3D3D3' }}>
                 Have an account already?
               </Text>
-              <Link href="/sign-in" style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16, color: '#E3AC36' }} className='my-5'>
+              <Link 
+                href="/sign-in" 
+                style={{ 
+                  fontFamily: 'Poppins-SemiBold', 
+                  fontSize: 16, 
+                  color: '#E3AC36',
+                  marginLeft: 8 
+                }}
+              >
                 Sign In
               </Link>
             </View>

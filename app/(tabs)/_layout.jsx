@@ -24,23 +24,14 @@ const firebaseConfig = {
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const storage = getStorage(app); // Get storage instance
 
-const TabIcon = ({ icon, color, name, focused }) => (
-  <View className="items-center justify-center gap-3">
+const TabIcon = ({ icon, color, focused }) => (
+  <View className="items-center justify-center gap-3" style={{ marginBottom: focused ? 10 : 0 }}>
     <Image
       source={icon}
       resizeMode="contain"
       style={{ tintColor: color }}
       className="w-7 h-7"
     />
-    <Text
-      className={`${focused ? 'font-semibold' : 'font-regular'} text-xs`}
-      style={{
-        color,
-        marginBottom: focused ? 20 : 0,
-      }}
-    >
-      {name}
-    </Text>
   </View>
 );
 
@@ -54,38 +45,37 @@ const TabsLayout = () => {
         {() => (
           <Tabs
             screenOptions={{
-              tabBarShowLabel: false,
+              tabBarShowLabel: true,
               tabBarActiveTintColor: '#FFA001',
               tabBarInactiveTintColor: '#ffffff',
               tabBarStyle: {
-                backgroundColor: '#540b0e',
-                borderTopWidth: 0,
-                height: 84,
-                paddingHorizontal: 20,
-                borderRadius: 40,
+                backgroundColor: '#800000',
+                borderTopWidth: 1,
+                height: 70,
+                paddingHorizontal: 10,
+                borderRadius: 30,
                 position: 'absolute',
-                left: 10,
-                right: 10,
-                bottom: 10,
+                left: 5,
+                right: 5,
+                bottom: 5,
                 shadowColor: '#000',
                 shadowOffset: {
                   width: 0,
-                  height: 3,
+                  height: 2,
                 },
-                shadowOpacity: 0.1,
-                shadowRadius: 6,
-                elevation: 5,
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+                elevation: 3,
               },
             }}
           >
-           
             <Tabs.Screen
               name="home"
               options={{
                 title: 'Home',
                 headerShown: false,
                 tabBarIcon: ({ color, focused }) => (
-                  <TabIcon icon={icons.home} color={color} name="Home" focused={focused} />
+                  <TabIcon icon={icons.home} color={color} focused={focused} />
                 ),
               }}
             />
@@ -95,7 +85,7 @@ const TabsLayout = () => {
                 title: 'Categories',
                 headerShown: false,
                 tabBarIcon: ({ color, focused }) => (
-                  <TabIcon icon={icons.categories} color={color} name="Categories" focused={focused} />
+                  <TabIcon icon={icons.categories} color={color} focused={focused} />
                 ),
               }}
             />
@@ -105,7 +95,7 @@ const TabsLayout = () => {
                 title: 'Settings',
                 headerShown: false,
                 tabBarIcon: ({ color, focused }) => (
-                  <TabIcon icon={icons.settings} color={color} name="Settings" focused={focused} />
+                  <TabIcon icon={icons.settings} color={color} focused={focused} />
                 ),
               }}
             />
@@ -115,7 +105,7 @@ const TabsLayout = () => {
                 title: 'Profile',
                 headerShown: false,
                 tabBarIcon: ({ color, focused }) => (
-                  <TabIcon icon={icons.profile} color={color} name="Profile" focused={focused} />
+                  <TabIcon icon={icons.profile} color={color} focused={focused} />
                 ),
               }}
             />
@@ -123,7 +113,6 @@ const TabsLayout = () => {
         )}
       </TabStack.Screen>
 
-     
       <TabStack.Screen
         name="EditProfile"
         component={EditProfile}

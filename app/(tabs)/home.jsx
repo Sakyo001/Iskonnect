@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { View, StyleSheet, Dimensions, SafeAreaView, Text, TouchableOpacity, Image, ScrollView, ActivityIndicator, Linking, Modal, FlatList, Pressable, TextInput, Platform, Alert } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { Ionicons } from '@expo/vector-icons'
-import { Video } from 'expo-av'
+import { Video } from 'expo-av'; 
 
 const { width, height } = Dimensions.get('window')
 

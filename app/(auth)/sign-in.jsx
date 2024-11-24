@@ -87,10 +87,10 @@ const SignIn = () => {
   };
 
   return (
-    <GestureHandlerRootView className="bg-[#800000]"> 
-      <SafeAreaView className="h-full"> 
-        <ScrollView>
-          <View className="w-full justify-center min-h-[80vh] px-4 my-6 bg-[#800000]"> 
+    <GestureHandlerRootView style={{ flex: 1 }} className="bg-[#800000]"> 
+      <SafeAreaView style={{ flex: 1 }} className="h-full"> 
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View className="w-full justify-center flex-1 px-4 my-6 bg-[#800000]"> 
             <View className="absolute top-0 left-0 mt-4 ml-4 flex-row items-center">
               <Image 
                 source={images.puplogo} 
@@ -140,11 +140,19 @@ const SignIn = () => {
               isLoading={isSubmitting}
             />
 
-            <View className="justify-center pt-5 flex-row gap-2">
+            <View className="flex-row items-center justify-center mt-8 mb-8">
               <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 16, color: '#D3D3D3' }}>
                 Don't have an account yet?
               </Text>
-              <Link href="/sign-up" style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16, color: '#E3AC36' }} className='my-5'>
+              <Link 
+                href="/sign-up" 
+                style={{ 
+                  fontFamily: 'Poppins-SemiBold', 
+                  fontSize: 16, 
+                  color: '#E3AC36',
+                  marginLeft: 8 
+                }}
+              >
                 Sign Up
               </Link>
             </View>

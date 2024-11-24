@@ -31,19 +31,15 @@ const AuthLayout = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}> 
-      <Stack>
-        <Stack.Screen 
-          name="sign-in"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen 
-          name="sign-up"
-          options={{ headerShown: false }}
-        />
+    <View style={{ flex: 1, backgroundColor: '#800000' }}> 
+      <Stack screenOptions={{ 
+        headerShown: false,
+        contentStyle: { backgroundColor: '#800000' }
+      }}>
+        <Stack.Screen name="sign-in" />
+        <Stack.Screen name="sign-up" />
       </Stack>
-
-      <StatusBar backgroundColor='#161622' style='light'/>
+      <StatusBar backgroundColor='#800000' style='light'/>
     </View>
   );
 };

@@ -32,7 +32,8 @@
       ]
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-video"
     ],
     "extra": {
       "router": {
@@ -41,6 +42,7 @@
       "eas": {
         "projectId": "d568077b-a21d-4004-82d4-0faadf53aebb"
       }
-    }
+    },
+    "newArchEnabled": true
   }
 }
