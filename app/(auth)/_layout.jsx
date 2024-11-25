@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { initializeApp, getApps } from 'firebase/app';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -31,16 +32,21 @@ const AuthLayout = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#800000' }}> 
-      <Stack screenOptions={{ 
-        headerShown: false,
-        contentStyle: { backgroundColor: '#800000' }
-      }}>
-        <Stack.Screen name="sign-in" />
-        <Stack.Screen name="sign-up" />
-      </Stack>
-      <StatusBar backgroundColor='#800000' style='light'/>
-    </View>
+    <KeyboardAvoidingView 
+      style={{ flex: 1 }} 
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Adjust behavior based on platform
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS
+    >
+      <View style={{ flex: 1, backgroundColor: '#800000' }}>
+        <Stack screenOptions={{ 
+          headerShown: false,
+          contentStyle: { backgroundColor: '#800000' } // Ensure content also has maroon background
+        }}>
+          <Stack.Screen name="sign-in" />
+          <Stack.Screen name="sign-up" />
+        </Stack>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
