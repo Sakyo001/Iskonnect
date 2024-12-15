@@ -1,9 +1,11 @@
 // app/index.jsx
+import 'react-native-gesture-handler';
 import { Text, View, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import ProceedButton from '../components/ProceedButton'; // Custom button component
 import logo from '../assets/images/puplogo.png'; // Adjust path based on your structure
+
 
 export default function App() {
   return (

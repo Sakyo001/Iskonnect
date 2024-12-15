@@ -62,16 +62,30 @@ const INITIAL_CAMERA_SETTINGS = `
   (function() {
     const viewer = document.querySelector('model-viewer');
     if (viewer) {
-      viewer.cameraOrbit = '0deg 45deg 30m';  // Closer zoom (30m instead of default)
-      viewer.fieldOfView = '25deg';  // Narrower field of view for closer zoom
-      viewer.maxFieldOfView = '30deg';  // Limit max zoom out
-      viewer.minCameraOrbit = 'auto 0deg 20m';  // Limit closest zoom
-      viewer.maxCameraOrbit = 'auto 90deg 100m';  // Limit furthest zoom
+      viewer.cameraOrbit = '0deg 45deg 30m';
+      viewer.fieldOfView = '25deg';
+      viewer.maxFieldOfView = '30deg';
+      viewer.minCameraOrbit = 'auto 0deg 20m';
+      viewer.maxCameraOrbit = 'auto 90deg 100m';
 
-      // Add CSS to hide the AR button
-      const style = document.createElement('style');
-      style.textContent = 'model-viewer::part(ar-button) { display: none; }';
-      document.head.appendChild(style);
+      // Hide AR button and View In Your Space button
+      const hideButtons = () => {
+        const arButton = viewer.shadowRoot?.querySelector('button[slot="ar-button"]');
+        const viewInYourSpaceButton = viewer.shadowRoot?.querySelector('button[slot="view-in-your-space-button"]');
+        if (arButton) {
+          arButton.style.display = 'none';
+        }
+        if (viewInYourSpaceButton) {
+          viewInYourSpaceButton.style.display = 'none';
+        }
+      };
+
+      // Initial hide
+      hideButtons();
+
+      // Add mutation observer to ensure buttons stay hidden
+      const observer = new MutationObserver(hideButtons);
+      observer.observe(viewer, { childList: true, subtree: true });
     }
   })();
   true;
@@ -222,33 +236,7 @@ const Home = () => {
     setShowVideo(false);
   };
 
-  const handleARView = (place) => {
-    const modelUrl = 'https://3dwarehouse.sketchup.com/warehouse/v1.0/content/public/f807576d-06d3-497d-abe3-cbe347014750';
-    
-    if (Platform.OS === 'android') {
-      const sceneViewerUrl = `intent://arvr.google.com/scene-viewer/1.2?file=${encodeURIComponent(modelUrl)}&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
-      Linking.openURL(sceneViewerUrl).catch(err => {
-        console.error('Error opening AR view:', err);
-        // Fallback for devices without AR support
-        Alert.alert(
-          'AR Not Available',
-          'AR view is not supported on this device.',
-          [{ text: 'OK' }]
-        );
-      });
-    } else if (Platform.OS === 'ios') {
-      // iOS AR Quick Look URL
-      const quickLookUrl = `${modelUrl}#allowsContentScaling=0`;
-      Linking.openURL(quickLookUrl).catch(err => {
-        console.error('Error opening AR view:', err);
-        Alert.alert(
-          'AR Not Available',
-          'AR view is not supported on this device.',
-          [{ text: 'OK' }]
-        );
-      });
-    }
-  };
+  
 
   const renderPlaceCard = (place, index) => (
     <View 
@@ -832,6 +820,12 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 8,
     fontStyle: 'italic',
+  },
+  viewInYourSpaceButton: {
+    display: 'none',
+  },
+  buttonText: {
+    // Your existing button text styles
   },
 });
 

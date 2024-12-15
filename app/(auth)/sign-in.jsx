@@ -1,4 +1,4 @@
-import { View, Text, Image, Modal, Animated, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, Image, Modal, Animated, Platform, KeyboardAvoidingView } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -82,13 +82,22 @@ const SignIn = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }} className="bg-[#800000]"> 
-      <SafeAreaView style={{ flex: 1, marginTop: 0 }}>
       <KeyboardAvoidingView 
-          style={{ flex: 1 }} 
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Adjust behavior based on platform
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS
-        >
-          <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+      >
+      <SafeAreaView style={{ flex: 1 }}>
+          <ScrollView 
+            contentContainerStyle={{ 
+              flexGrow: 1,
+              justifyContent: 'space-between',
+              paddingBottom: Platform.OS === 'android' ? 20 : 0
+            }}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+          >
             <View className="w-full justify-center flex-1 px-4 my-6 bg-[#800000]"> 
               <View className="absolute top-0 left-0 mt-4 ml-4 flex-row items-center">
                 <Image 
@@ -159,7 +168,6 @@ const SignIn = () => {
               <GuestButton />
             </View>
           </ScrollView>
-        </KeyboardAvoidingView>
       </SafeAreaView>
 
       {/* Success Modal */}
@@ -195,6 +203,7 @@ const SignIn = () => {
           </Animated.View>
         </View>
       </Modal>
+      </KeyboardAvoidingView>
     </GestureHandlerRootView>
   );
 };

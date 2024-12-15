@@ -1,4 +1,3 @@
-// /(auth)/_layout.jsx
 import { View } from 'react-native';
 import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
@@ -22,7 +21,6 @@ const firebaseConfig = {
 
 const AuthLayout = () => {
   useEffect(() => {
-    // Check if Firebase has already been initialized
     if (getApps().length === 0) {
       const app = initializeApp(firebaseConfig);
       initializeAuth(app, {
@@ -32,21 +30,18 @@ const AuthLayout = () => {
   }, []);
 
   return (
-    <KeyboardAvoidingView 
-      style={{ flex: 1 }} 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Adjust behavior based on platform
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS
-    >
+   
       <View style={{ flex: 1, backgroundColor: '#800000' }}>
+        <StatusBar style="light" />
         <Stack screenOptions={{ 
           headerShown: false,
-          contentStyle: { backgroundColor: '#800000' } // Ensure content also has maroon background
+          contentStyle: { backgroundColor: '#800000' },
+          animation: 'slide_from_right'
         }}>
           <Stack.Screen name="sign-in" />
           <Stack.Screen name="sign-up" />
         </Stack>
       </View>
-    </KeyboardAvoidingView>
   );
 };
 

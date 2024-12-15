@@ -176,12 +176,7 @@ const Profile = () => {
           <View className="flex-row justify-between items-center mb-3">
             <Text className="text-gray-800 text-lg font-semibold">Overview</Text>
             <TouchableOpacity className="flex-row items-center" onPress={() => {}}>
-              <Image
-                source={images.pencil}
-                className="w-4 h-4 mr-2 tint-blue-600" 
-                resizeMode="contain"
-              />
-              <Text className="text-blue-600 font-medium">Edit Info</Text>
+             
             </TouchableOpacity>
           </View>
 
@@ -201,38 +196,6 @@ const Profile = () => {
           </View>
         </View>
 
-        {/* Account Section */}
-        <View className="mt-6 px-4">
-          <Text className="text-gray-800 text-lg font-semibold mb-3">Account</Text>
-          
-          <View className="bg-white rounded-xl shadow-sm">
-            <TouchableOpacity className="p-4 flex-row justify-between items-center border-b border-gray-100">
-              <Text className="text-gray-800 font-medium">Favorites</Text>
-              <Text className="text-gray-400 text-lg">›</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity className="p-4 flex-row justify-between items-center border-b border-gray-100">
-              <Text className="text-gray-800 font-medium">History</Text>
-              <Text className="text-gray-400 text-lg">›</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity className="p-4 flex-row justify-between items-center">
-              <Text className="text-gray-800 font-medium">Saved Locations</Text>
-              <Text className="text-gray-400 text-lg">›</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Settings Section */}
-        <View className="mt-6 px-4 mb-10"> 
-          <Text className="text-gray-800 text-lg font-semibold mb-3">Settings</Text>
-          <View className="bg-white rounded-xl shadow-sm">
-            <TouchableOpacity className="p-4 flex-row justify-between items-center">
-              <Text className="text-gray-800 font-medium">Dark Mode</Text>
-              <Text className="text-gray-400 text-lg">›</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );

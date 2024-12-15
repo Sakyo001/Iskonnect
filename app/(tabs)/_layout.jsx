@@ -7,6 +7,9 @@ import EditProfile from '../../components/EditProfile';
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 import { getApps} from 'firebase/app';
+import Settings from './settings';
+import Profile from './profile';
+import Privacy from '../../components/Privacy';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -58,14 +61,18 @@ const TabsLayout = () => {
                 left: 5,
                 right: 5,
                 bottom: 5,
-                shadowColor: '#000',
+                shadowColor: 'transparent',
                 shadowOffset: {
                   width: 0,
-                  height: 2,
+                  height: 0,
                 },
-                shadowOpacity: 0.2,
-                shadowRadius: 4,
-                elevation: 3,
+                shadowOpacity: 0,
+                shadowRadius: 0,
+                elevation: 0,
+              },
+              tabBarItemStyle: {
+                backgroundColor: 'transparent',
+                borderRadius: 30,
               },
             }}
           >

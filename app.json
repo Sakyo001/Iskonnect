@@ -5,10 +5,10 @@
     "scheme": "iskonnect",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adaptive.png",
+    "icon": "./assets/images/puplogo.png",  
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/adaptive.png",
+      "image": "./assets/images/puplogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,20 +16,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.sakyo11.iskonnect"
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.sakyo11.iskonnect",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive.png",
+        "foregroundImage": "./assets/images/puplogo.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.sakyo11.iskonnect"
     },
     "plugins": [
       "expo-router",
